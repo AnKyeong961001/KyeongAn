@@ -35,9 +35,10 @@ public class PrintByPrinter implements Printable{
 			while(it.hasNext()) {
 				Student st = it.next();
 				sout.println(st);
-				sout.flush();
 			}
+			sout.flush();
 			sout.println("BYE");
+			sout.flush();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -1,9 +1,14 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Pattern;
 
 public class School
 {
+	private static final String STUDENT_NUM = "201\\d{1}\\\\d{4}";
+	
 	private Set<Student> students;
 	private Printable printable;
 	
@@ -13,7 +18,7 @@ public class School
 		printable = null;
 	}
 	
-	// booleanÀ» ¹İÈ¯ÇÏ°í ¹Ş´Â °÷¿¡¼­ Ãâ·ÂÇÒÁö Ãâ·ÂÇÏ°í ¹İÈ¯ÇÒÁö °áÁ¤ÇØ¾ß ÇÑ´Ù.
+	// booleanï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï°ï¿½ ï¿½Ş´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½.
 	//
 	//
 	public boolean addStudent(Student student)
@@ -31,12 +36,12 @@ public class School
 			if(student.getName().equals(name))
 			{
 				students.remove(student);
-				System.out.println(name + " »èÁ¦ ¿Ï·á");
+				System.out.println(name + "ì‚­ì œì™„ë£Œ");
 				return true;
 			}
 		}
 		
-		System.out.println(name + " »èÁ¦ ½ÇÆĞ");
+		System.out.println(name + " ì‚­ì œì‹¤íŒ¨");
 		return false;
 	}
 	
@@ -121,27 +126,47 @@ public class School
 	{
 		switch(type)
 		{
-		case "ÇÁ¸°ÅÍ":
+		case "ì„œë²„":
 			printable = new PrintByPrinter();
-			System.out.println("Ãâ·Â ¹æ½ÄÀÌ " + type +"À¸·Î ¼³Á¤µÇ¾ú½À´Ï´Ù.");
+			System.out.println("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ " + type +" ìœ¼ë¡œ ì„¤ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			break;
-		case "ÆÄÀÏ":
+		case "íŒŒì¼":
 			printable = new PrintByFile();
-			System.out.println("Ãâ·Â ¹æ½ÄÀÌ " + type +"À¸·Î ¼³Á¤µÇ¾ú½À´Ï´Ù.");
+			System.out.println("íŒŒì¼ ï¿½ï¿½ï¿½ï¿½ï¿½ " + type +"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			break;
-		case "ÄÜ¼Ö":
+		case "ì½˜ì†”":
 			printable = new PrintByConsole();
-			System.out.println("Ãâ·Â ¹æ½ÄÀÌ " + type +"À¸·Î ¼³Á¤µÇ¾ú½À´Ï´Ù.");
+			System.out.println("ì½˜ì†” ï¿½ï¿½ï¿½ï¿½ï¿½ " + type +"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			break;
 		default:
-			System.out.println("Àß¸øµÈ ÀÔ·Â ¹æ½ÄÀÔ´Ï´Ù. ÀÔ·Â : ÇÁ¸°ÅÍ, ÆÄÀÏ, ÄÜ¼Ö");
+			System.out.println("ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½. ï¿½Ô·ï¿½ : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½Ü¼ï¿½");
 		}
 	}
 	
 	public static void main(String[] args)
 	{
 		School school = new School();
-		
-		
+		String name=null;
+		BufferedReader out = new BufferedReader(new InputStreamReader(
+				System.in));
+		while(true) {
+			System.out.println("ì´ë¦„:");
+			try {
+				name = out.readLine();
+				break;
+			}catch(Exception e) {
+				System.out.println("ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”.");
+			}
+		}
+		while(true) {
+			System.out.println("í•™ë²ˆ : ");
+			String id =null;
+			try {
+				id = out.readLine();
+			}catch(Exception e) {System.out.println("ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”.");}
+			if(Pattern.matches(STUDENT_NUM,id)) {
+				
+			}
+		}
 	}
 }

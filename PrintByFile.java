@@ -7,49 +7,49 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-public class PrintByFile implements Printable{
+public class PrintByFile implements Printable {
 
 	@Override
 	public void printStudent(Set<Student> printStudents) {
-		String path="C:/javaTemp/data.txt";
+		
+		String path = null;
 		BufferedWriter out = null;
-		if(printStudents==null){System.err.println("Á¸ÀçÇÏ´Â ÇĞ»ıÀÌ ¾ø½À´Ï´Ù");}
-		else {
-					try {
-						
-						
-							out=new BufferedWriter(new FileWriter(path));
-							
-							while(true)
-							{
-								try {	
-									Iterator<Student> it =printStudents.iterator();
-										while(it.hasNext()) {
-										Student student = it.next();
-										StringTokenizer st=new StringTokenizer(student.toString(), "/");
-										int count=0;
-										while(st.hasMoreTokens()) {
-											if(count!=0)out.write(" / ");
-											String s = st.nextToken();
-											out.write(s);
-											count++;
-											}
-										out.write("\n");
-										out.flush();
-										}
-									}
-									catch(IOException e) {e.printStackTrace();}
-								break;
-							}
-					  }catch (FileNotFoundException e) { e.printStackTrace();}
-					   catch(IOException e) {e.printStackTrace();}
-				
-					
-					
-					try {
-						out.close();
-					}catch(IOException e) {
-						e.printStackTrace();
+		try {
+			out = new BufferedWriter(new FileWriter("/Users/jeonkyeong-an/temp/data3.txt"));
+
+			while (true) {
+				try {
+					Iterator<Student> it = printStudents.iterator();
+					while (it.hasNext()) {
+						Student student = it.next();
+						StringTokenizer st = new StringTokenizer(student.toString(), "/");
+						// student í•˜ë‚˜ ë°›ì•„
+						while (st.hasMoreTokens()) {
+							String s = st.nextToken();
+							out.write(s); // ë²„í¼ì— ì¶”ê°€
+							out.flush(); // ì¨ì§€ëŠ”ê±°
+						}
 					}
-		    }
-}}
+					break;
+				} catch (NullPointerException e) {
+					System.err.println("ì¡´ì¬í•˜ëŠ” í•™ìƒì´ ì—†ìŠµë‹ˆë‹¤");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+}
