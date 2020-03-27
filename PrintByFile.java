@@ -3,36 +3,40 @@ import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.StringTokenizer;
 
 public class PrintByFile implements Printable {
 
+	private Sortable sortable = new ScoreSort();
+	
 	@Override
 	public void printStudent(Set<Student> printStudents) {
 		
 		String path = null;
 		BufferedWriter out = null;
+		ArrayList<Student> al = sortable.sort(printStudents);
 		try {
-			out = new BufferedWriter(new FileWriter("/Users/jeonkyeong-an/temp/data3.txt"));
+			out = new BufferedWriter(new FileWriter("C:\\temp2\\data2.txt"));
 
 			while (true) {
 				try {
-					Iterator<Student> it = printStudents.iterator();
+					Iterator<Student> it = al.iterator();
 					while (it.hasNext()) {
 						Student student = it.next();
 						StringTokenizer st = new StringTokenizer(student.toString(), "/");
-						// student 하나 받아
+						// student �븯�굹 諛쏆븘
 						while (st.hasMoreTokens()) {
 							String s = st.nextToken();
-							out.write(s); // 버퍼에 추가
-							out.flush(); // 써지는거
+							out.write(s); // 踰꾪띁�뿉 異붽�
+							out.flush(); // �뜥吏��뒗嫄�
 						}
 					}
 					break;
 				} catch (NullPointerException e) {
-					System.err.println("존재하는 학생이 없습니다");
+					System.err.println("議댁옱�븯�뒗 �븰�깮�씠 �뾾�뒿�땲�떎");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

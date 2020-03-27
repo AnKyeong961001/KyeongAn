@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
@@ -9,7 +10,7 @@ public class School
 	
 	public School()
 	{
-		students = new TreeSet<Student>();
+		students = new HashSet<Student>();
 		printable = null;
 	}
 	
@@ -18,7 +19,16 @@ public class School
 	//
 	public boolean addStudent(Student student)
 	{
-		return students.add(student);
+		if(students.add(student))
+		{
+			System.out.println(student.getName() + " 추가 완료");
+			return true;
+		}
+		else
+		{
+			System.out.println(student.getName() + " 추가 실패");
+			return false;
+		}
 	}
 	
 	public boolean removeStudent(String name)
@@ -33,7 +43,7 @@ public class School
 				students.remove(student);
 				System.out.println(name + " 삭제 완료");
 				return true;
-			}
+			}	
 		}
 		
 		System.out.println(name + " 삭제 실패");
@@ -138,31 +148,61 @@ public class School
 		}
 	}
 	
-	public static void pacade(School school, Set<Student> students) {
-		school.setPrintable("프린터");
-		printable.printStudent(students);
-		school.setPrintable("파일");
-		printable.printStudent(students);
-		school.setPrintable("콘솔");
-		printable.printStudent(students);
-		
-	}
-	
 	public static void main(String[] args)
 	{
+		StudentBuilder studentBuilder = StudentBuilder.getStudentBuilder();
+
 		School school = new School();	
-		Student s1 = new Student("gildong", "1", "soft", 100);
-		Student s2 = new Student("simchung", "2", "com", 90);
-		Student s3 = new Student("ganggam", "3", "soft", 80);
-		Student s4 = new Student("soonsin", "4", "com", 100);
+		
+		Student s1 = studentBuilder.setName("홍길동").setNumber("20180243")
+				.setMajor("전자공학과").setScore(90).build();
+		Student s2 = studentBuilder.setName("김우석").setNumber("20120853")
+				.setMajor("환경공학과").setScore(50).build();
+		Student s3 = studentBuilder.setName("전경안").setNumber("20091502")
+				.setMajor("컴퓨터학과").setScore(100).build();
+		Student s4 = studentBuilder.setName("김혜린").setNumber("20150432")
+				.setMajor("경제학과").setScore(50).build();
 		school.addStudent(s1);
 		school.addStudent(s2);
 		school.addStudent(s3);
 		school.addStudent(s4);
-		pacade(school, school.getStudents());
-		school.removeStudent("soonsin");
-		pacade(school, school.searchName("gildong"));
-		pacade(school, school.searchMajor("soft"));
-		pacade(school, school.searchNumber("2"));
-	}
+		school.setPrintable("프린터");
+		printable.printStudent(school.getStudents());
+		
+		school.setPrintable("파일");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("콘솔");
+		printable.printStudent(school.getStudents());
+	
+		school.removeStudent("홍길동");
+		school.setPrintable("프린터");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("파일");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("콘솔");
+		printable.printStudent(school.getStudents());	
+		
+		school.setPrintable("프린터");
+		printable.printStudent(school.searchName("김우석"));
+		school.setPrintable("파일");
+		printable.printStudent(school.searchName("김우석"));
+		school.setPrintable("콘솔");
+		printable.printStudent(school.searchName("김우석"));
+		
+		
+		school.setPrintable("프린터");
+		printable.printStudent(school.searchMajor("경제학과"));
+		school.setPrintable("파일");
+		printable.printStudent(school.searchMajor("경제학과"));
+		school.setPrintable("콘솔");
+		printable.printStudent(school.searchMajor("경제학과"));
+		
+		
+		school.setPrintable("프린터");
+		printable.printStudent(school.searchNumber("20091502"));
+		school.setPrintable("파일");
+		printable.printStudent(school.searchNumber("20091502"));
+		school.setPrintable("콘솔");
+		printable.printStudent(school.searchNumber("20091502"));
+		}
 }

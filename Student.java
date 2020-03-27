@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class Student implements Comparable<Student>,Serializable
+public class Student implements Comparable<Student>, Serializable
 {
 	private static final long serialVersionUID = 1L;
 	private String name;
@@ -58,8 +58,8 @@ public class Student implements Comparable<Student>,Serializable
 	
 	public String toString()
 	{
-		return "ï¿½Ì¸ï¿½ : " + name + "/ï¿½ï¿½ï¿½ï¿½ : " + major + 
-				" /ï¿½Ð¹ï¿½ : " + number + " ï¿½ï¿½ï¿½ï¿½ " + score + "ï¿½ï¿½";
+		return "ÀÌ¸§ : " + name + " /Àü°ø : " + major + 
+				" /ÇÐ¹ø : " + number + " /Á¡¼ö " + score + "Á¡";
 	}
 	
 	public boolean equals(Object o)
@@ -69,7 +69,7 @@ public class Student implements Comparable<Student>,Serializable
 		
 		Student obj = (Student)o;
 		
-		// ï¿½Ì¸ï¿½ ï¿½Ë»ï¿½
+		// ÀÌ¸§ °Ë»ç
 		if(name != null)
 		{
 			if(!(name.equals(obj.name))) return false;
@@ -79,7 +79,7 @@ public class Student implements Comparable<Student>,Serializable
 			if(obj.name != null) return false;
 		}
 		
-		// ï¿½Ð¹ï¿½ ï¿½Ë»ï¿½
+		// ÇÐ¹ø °Ë»ç
 		if(number != null)
 		{
 			if(!(number.equals(obj.number))) return false;
@@ -89,7 +89,7 @@ public class Student implements Comparable<Student>,Serializable
 			if(obj.number != null) return false;
 		}
 		
-		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
+		// Àü°ø °Ë»ç
 		if(major != null)
 		{
 			if(!(major.equals(obj.major))) return false; 
@@ -98,7 +98,7 @@ public class Student implements Comparable<Student>,Serializable
 		{
 			if(obj.major != null) return false;
 		}
-		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
+		// Á¡¼ö °Ë»ç
 		if(score != obj.score) return false;
 		
 		return true;
@@ -114,12 +114,12 @@ public class Student implements Comparable<Student>,Serializable
 		result = prime * result + major.hashCode();
 		result = prime * result + score;
 		
-		return result;
+		return result; 	
 	}
 	
-	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½
+	// Á¡¼ö·Î ºñ±³ÇØ¼­ Ãâ·Â
 	public int compareTo(Student student)
 	{
-		return - this.score + student.getScore();
+		return student.score - score;
 	}
 }
