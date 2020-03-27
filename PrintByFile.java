@@ -11,40 +11,45 @@ public class PrintByFile implements Printable{
 
 	@Override
 	public void printStudent(Set<Student> printStudents) {
-		String path=null;
+		String path="C:/javaTemp/data.txt";
 		BufferedWriter out = null;
-		try {
-			out=new BufferedWriter(new FileWriter("C:/javaTemp/data.txt"));
-			
-			while(true)
-			{
-				try {	
-					Iterator<Student> it =printStudents.iterator();
-					while(it.hasNext()) {
-					Student student = it.next();
-					StringTokenizer st=new StringTokenizer(student.toString(), "/");
-					while(st.hasMoreTokens()) {
-						String s = st.nextToken();
-						out.write(s);
-						out.flush();
-					}
-					}
+		if(printStudents==null){System.err.println("존재하는 학생이 없습니다");}
+		else {
+					try {
+						
+						
+							out=new BufferedWriter(new FileWriter(path));
+							
+							while(true)
+							{
+								try {	
+									Iterator<Student> it =printStudents.iterator();
+										while(it.hasNext()) {
+										Student student = it.next();
+										StringTokenizer st=new StringTokenizer(student.toString(), "/");
+										int count=0;
+										while(st.hasMoreTokens()) {
+											if(count!=0)out.write(" / ");
+											String s = st.nextToken();
+											out.write(s);
+											count++;
+											}
+										out.write("\n");
+										out.flush();
+										}
+									}
+									catch(IOException e) {e.printStackTrace();}
+								break;
+							}
+					  }catch (FileNotFoundException e) { e.printStackTrace();}
+					   catch(IOException e) {e.printStackTrace();}
+				
 					
-				}catch(NullPointerException e) {System.err.println("존재하는 학생이 없습니다");}
-				catch(EOFException e) {break;}
-				catch(IOException e) {e.printStackTrace();}
-			}
-			
-		   } catch (FileNotFoundException e) { e.printStackTrace();}
-			 catch(IOException e) {e.printStackTrace();}
-	
-		
-		
-		try {
-			out.close();
-		}catch(IOException e) {
-			e.printStackTrace();
-		}	
-	}
-
-}
+					
+					try {
+						out.close();
+					}catch(IOException e) {
+						e.printStackTrace();
+					}
+		    }
+}}
