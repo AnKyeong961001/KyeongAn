@@ -1,16 +1,11 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.regex.Pattern;
 
 public class School
 {
-	private static final String STUDENT_NUM = "201\\d{1}\\\\d{4}";
-	
 	private Set<Student> students;
-	private Printable printable;
+	private static Printable printable;
 	
 	public School()
 	{
@@ -18,7 +13,7 @@ public class School
 		printable = null;
 	}
 	
-	// booleanï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï°ï¿½ ï¿½Ş´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½.
+	// booleanÀ» ¹İÈ¯ÇÏ°í ¹Ş´Â °÷¿¡¼­ Ãâ·ÂÇÒÁö Ãâ·ÂÇÏ°í ¹İÈ¯ÇÒÁö °áÁ¤ÇØ¾ß ÇÑ´Ù.
 	//
 	//
 	public boolean addStudent(Student student)
@@ -36,12 +31,12 @@ public class School
 			if(student.getName().equals(name))
 			{
 				students.remove(student);
-				System.out.println(name + "ì‚­ì œì™„ë£Œ");
+				System.out.println(name + " »èÁ¦ ¿Ï·á");
 				return true;
 			}
 		}
 		
-		System.out.println(name + " ì‚­ì œì‹¤íŒ¨");
+		System.out.println(name + " »èÁ¦ ½ÇÆĞ");
 		return false;
 	}
 	
@@ -126,47 +121,71 @@ public class School
 	{
 		switch(type)
 		{
-		case "ì„œë²„":
+		case "ÇÁ¸°ÅÍ":
 			printable = new PrintByPrinter();
-			System.out.println("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ " + type +" ìœ¼ë¡œ ì„¤ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
+			System.out.println("Ãâ·Â ¹æ½ÄÀÌ " + type +"À¸·Î ¼³Á¤µÇ¾ú½À´Ï´Ù.");
 			break;
-		case "íŒŒì¼":
+		case "ÆÄÀÏ":
 			printable = new PrintByFile();
-			System.out.println("íŒŒì¼ ï¿½ï¿½ï¿½ï¿½ï¿½ " + type +"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
+			System.out.println("Ãâ·Â ¹æ½ÄÀÌ " + type +"À¸·Î ¼³Á¤µÇ¾ú½À´Ï´Ù.");
 			break;
-		case "ì½˜ì†”":
+		case "ÄÜ¼Ö":
 			printable = new PrintByConsole();
-			System.out.println("ì½˜ì†” ï¿½ï¿½ï¿½ï¿½ï¿½ " + type +"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
+			System.out.println("Ãâ·Â ¹æ½ÄÀÌ " + type +"À¸·Î ¼³Á¤µÇ¾ú½À´Ï´Ù.");
 			break;
 		default:
-			System.out.println("ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½. ï¿½Ô·ï¿½ : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½Ü¼ï¿½");
+			System.out.println("Àß¸øµÈ ÀÔ·Â ¹æ½ÄÀÔ´Ï´Ù. ÀÔ·Â : ÇÁ¸°ÅÍ, ÆÄÀÏ, ÄÜ¼Ö");
 		}
 	}
 	
 	public static void main(String[] args)
 	{
-		School school = new School();
-		String name=null;
-		BufferedReader out = new BufferedReader(new InputStreamReader(
-				System.in));
-		while(true) {
-			System.out.println("ì´ë¦„:");
-			try {
-				name = out.readLine();
-				break;
-			}catch(Exception e) {
-				System.out.println("ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”.");
-			}
-		}
-		while(true) {
-			System.out.println("í•™ë²ˆ : ");
-			String id =null;
-			try {
-				id = out.readLine();
-			}catch(Exception e) {System.out.println("ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”.");}
-			if(Pattern.matches(STUDENT_NUM,id)) {
-				
-			}
-		}
+		School school = new School();	
+		Student s1 = new Student("gildong", "1", "soft", 100);
+		Student s2 = new Student("simchung", "2", "com", 90);
+		Student s3 = new Student("ganggam", "3", "soft", 80);
+		Student s4 = new Student("soonsin", "4", "com", 70);
+		school.addStudent(s1);
+		school.addStudent(s2);
+		school.addStudent(s3);
+		school.addStudent(s4);
+		school.setPrintable("ÇÁ¸°ÅÍ");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("ÆÄÀÏ");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("ÄÜ¼Ö");
+		printable.printStudent(school.getStudents());
+	
+		school.removeStudent("soonsin");
+		school.setPrintable("ÇÁ¸°ÅÍ");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("ÆÄÀÏ");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("ÄÜ¼Ö");
+		printable.printStudent(school.getStudents());	
+		
+		school.searchName("gildong");
+		school.setPrintable("ÇÁ¸°ÅÍ");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("ÆÄÀÏ");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("ÄÜ¼Ö");
+		printable.printStudent(school.getStudents());
+		
+		school.searchMajor("soft");
+		school.setPrintable("ÇÁ¸°ÅÍ");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("ÆÄÀÏ");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("ÄÜ¼Ö");
+		printable.printStudent(school.getStudents());
+		
+		school.searchNumber("2");
+		school.setPrintable("ÇÁ¸°ÅÍ");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("ÆÄÀÏ");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("ÄÜ¼Ö");
+		printable.printStudent(school.getStudents());
 	}
 }
