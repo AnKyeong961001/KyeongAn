@@ -164,28 +164,27 @@ public class School
 		school.setPrintable("콘솔");
 		printable.printStudent(school.getStudents());	
 		
-		school.searchName("gildong");
 		school.setPrintable("프린터");
-		printable.printStudent(school.getStudents());
+		printable.printStudent(school.searchName("gildong"));
 		school.setPrintable("파일");
-		printable.printStudent(school.getStudents());
+		printable.printStudent(school.searchName("gildong"));
 		school.setPrintable("콘솔");
-		printable.printStudent(school.getStudents());
+		printable.printStudent(school.searchName("gildong"));
 		
-		school.searchMajor("soft");
-		school.setPrintable("프린터");
-		printable.printStudent(school.getStudents());
-		school.setPrintable("파일");
-		printable.printStudent(school.getStudents());
-		school.setPrintable("콘솔");
-		printable.printStudent(school.getStudents());
 		
-		school.searchNumber("2");
 		school.setPrintable("프린터");
-		printable.printStudent(school.getStudents());
+		printable.printStudent(school.searchMajor("soft"));
 		school.setPrintable("파일");
-		printable.printStudent(school.getStudents());
+		printable.printStudent(school.searchMajor("soft"));
 		school.setPrintable("콘솔");
-		printable.printStudent(school.getStudents());
+		printable.printStudent(school.searchMajor("soft"));
+		
+		
+		school.setPrintable("프린터");
+		printable.printStudent(school.searchNumber("2"));
+		school.setPrintable("파일");
+		printable.printStudent(school.searchNumber("2"));
+		school.setPrintable("콘솔");
+		printable.printStudent(school.searchNumber("2"));
 	}
 }
