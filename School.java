@@ -13,7 +13,7 @@ public class School
 		printable = null;
 	}
 	
-	// booleanì„ ë°˜í™˜í•˜ê³  ë°›ëŠ” ê³³ì—ì„œ ì¶œë ¥í• ì§€ ì¶œë ¥í•˜ê³  ë°˜í™˜í• ì§€ ê²°ì •í•´ì•¼ í•œë‹¤.
+	// booleanÀ» ¹İÈ¯ÇÏ°í ¹Ş´Â °÷¿¡¼­ Ãâ·ÂÇÒÁö Ãâ·ÂÇÏ°í ¹İÈ¯ÇÒÁö °áÁ¤ÇØ¾ß ÇÑ´Ù.
 	//
 	//
 	public boolean addStudent(Student student)
@@ -31,12 +31,12 @@ public class School
 			if(student.getName().equals(name))
 			{
 				students.remove(student);
-				System.out.println(name + " ì‚­ì œ ì™„ë£Œ");
+				System.out.println(name + " »èÁ¦ ¿Ï·á");
 				return true;
 			}
 		}
 		
-		System.out.println(name + " ì‚­ì œ ì‹¤íŒ¨");
+		System.out.println(name + " »èÁ¦ ½ÇÆĞ");
 		return false;
 	}
 	
@@ -121,21 +121,31 @@ public class School
 	{
 		switch(type)
 		{
-		case "í”„ë¦°í„°":
+		case "ÇÁ¸°ÅÍ":
 			printable = new PrintByPrinter();
-			System.out.println("ì¶œë ¥ ë°©ì‹ì´ " + type +"ìœ¼ë¡œ ì„¤ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
+			System.out.println("Ãâ·Â ¹æ½ÄÀÌ " + type +"À¸·Î ¼³Á¤µÇ¾ú½À´Ï´Ù.");
 			break;
-		case "íŒŒì¼":
+		case "ÆÄÀÏ":
 			printable = new PrintByFile();
-			System.out.println("ì¶œë ¥ ë°©ì‹ì´ " + type +"ìœ¼ë¡œ ì„¤ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
+			System.out.println("Ãâ·Â ¹æ½ÄÀÌ " + type +"À¸·Î ¼³Á¤µÇ¾ú½À´Ï´Ù.");
 			break;
-		case "ì½˜ì†”":
+		case "ÄÜ¼Ö":
 			printable = new PrintByConsole();
-			System.out.println("ì¶œë ¥ ë°©ì‹ì´ " + type +"ìœ¼ë¡œ ì„¤ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
+			System.out.println("Ãâ·Â ¹æ½ÄÀÌ " + type +"À¸·Î ¼³Á¤µÇ¾ú½À´Ï´Ù.");
 			break;
 		default:
-			System.out.println("ì˜ëª»ëœ ì…ë ¥ ë°©ì‹ì…ë‹ˆë‹¤. ì…ë ¥ : í”„ë¦°í„°, íŒŒì¼, ì½˜ì†”");
+			System.out.println("Àß¸øµÈ ÀÔ·Â ¹æ½ÄÀÔ´Ï´Ù. ÀÔ·Â : ÇÁ¸°ÅÍ, ÆÄÀÏ, ÄÜ¼Ö");
 		}
+	}
+	
+	public static void pacade(School school, Set<Student> students) {
+		school.setPrintable("ÇÁ¸°ÅÍ");
+		printable.printStudent(students);
+		school.setPrintable("ÆÄÀÏ");
+		printable.printStudent(students);
+		school.setPrintable("ÄÜ¼Ö");
+		printable.printStudent(students);
+		
 	}
 	
 	public static void main(String[] args)
@@ -144,47 +154,15 @@ public class School
 		Student s1 = new Student("gildong", "1", "soft", 100);
 		Student s2 = new Student("simchung", "2", "com", 90);
 		Student s3 = new Student("ganggam", "3", "soft", 80);
-		Student s4 = new Student("soonsin", "4", "com", 70);
+		Student s4 = new Student("soonsin", "4", "com", 100);
 		school.addStudent(s1);
 		school.addStudent(s2);
 		school.addStudent(s3);
 		school.addStudent(s4);
-		school.setPrintable("í”„ë¦°í„°");
-		printable.printStudent(school.getStudents());
-		school.setPrintable("íŒŒì¼");
-		printable.printStudent(school.getStudents());
-		school.setPrintable("ì½˜ì†”");
-		printable.printStudent(school.getStudents());
-	
+		pacade(school, school.getStudents());
 		school.removeStudent("soonsin");
-		school.setPrintable("í”„ë¦°í„°");
-		printable.printStudent(school.getStudents());
-		school.setPrintable("íŒŒì¼");
-		printable.printStudent(school.getStudents());
-		school.setPrintable("ì½˜ì†”");
-		printable.printStudent(school.getStudents());	
-		
-		school.setPrintable("í”„ë¦°í„°");
-		printable.printStudent(school.searchName("gildong"));
-		school.setPrintable("íŒŒì¼");
-		printable.printStudent(school.searchName("gildong"));
-		school.setPrintable("ì½˜ì†”");
-		printable.printStudent(school.searchName("gildong"));
-		
-		
-		school.setPrintable("í”„ë¦°í„°");
-		printable.printStudent(school.searchMajor("soft"));
-		school.setPrintable("íŒŒì¼");
-		printable.printStudent(school.searchMajor("soft"));
-		school.setPrintable("ì½˜ì†”");
-		printable.printStudent(school.searchMajor("soft"));
-		
-		
-		school.setPrintable("í”„ë¦°í„°");
-		printable.printStudent(school.searchNumber("2"));
-		school.setPrintable("íŒŒì¼");
-		printable.printStudent(school.searchNumber("2"));
-		school.setPrintable("ì½˜ì†”");
-		printable.printStudent(school.searchNumber("2"));
+		pacade(school, school.searchName("gildong"));
+		pacade(school, school.searchMajor("soft"));
+		pacade(school, school.searchNumber("2"));
 	}
 }
