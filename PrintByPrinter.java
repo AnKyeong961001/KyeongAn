@@ -31,21 +31,21 @@ public class PrintByPrinter implements Printable{
 							new OutputStreamWriter(
 									socket.getOutputStream())));
 			Iterator<Student> it = printStudents.iterator();
-			StringBuffer sb = new StringBuffer();
+			
+			
+			
 			while(it.hasNext()) {
 				Student st = it.next();
-				sb=sb.append(st.getName()).
-						append(" ").
-						append(st.getNumber()).
-						append(" ").
-						append(st.getMajor()).
-						append(" ").
-						append(st.getScore());
-				sout.println(sb);
+			
+				sout.println(st);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-				
+		finally {
+			try {
+				socket.close();
+			}catch(Exception e) {}
+		}
 	}
 }

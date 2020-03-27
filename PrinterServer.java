@@ -19,6 +19,7 @@ public class PrinterServer {
 	}
 	public void serverStart() {
 		try {
+			System.out.println("프린터기 대기");
 			cSocket = serverSocket.accept();
 			System.out.println("프린터기 연동 완료.");
 			
@@ -26,11 +27,8 @@ public class PrinterServer {
 					new InputStreamReader(cSocket.getInputStream()));
 			while(true) {
 				String str = sin.readLine();
-				if(str.toUpperCase().equals("BYE")) {
-					System.out.println(cSocket.getInetAddress().getHostName()+" 님이 나가셨습니다.");
-					break;
-				}
 				System.out.println(str);
+				System.out.println(cSocket.getInetAddress().getHostName()+" 님이 나가셨습니다.");
 			}
 			
 		}catch(Exception e) {
