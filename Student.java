@@ -6,6 +6,14 @@ public class Student
 	private String major;
 	private int score;
 	
+	public Student(String name, String number, String major, int score)
+	{
+		this.name = name;
+		this.number = number;
+		this.major = major;
+		this.score = score;
+	}
+	
 	public void setName(String name)
 	{
 		this.name = name;
