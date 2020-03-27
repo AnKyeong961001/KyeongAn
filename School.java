@@ -13,7 +13,7 @@ public class School
 		printable = null;
 	}
 	
-	// booleanÀ» ¹İÈ¯ÇÏ°í ¹Ş´Â °÷¿¡¼­ Ãâ·ÂÇÒÁö Ãâ·ÂÇÏ°í ¹İÈ¯ÇÒÁö °áÁ¤ÇØ¾ß ÇÑ´Ù.
+	// booleanì„ ë°˜í™˜í•˜ê³  ë°›ëŠ” ê³³ì—ì„œ ì¶œë ¥í• ì§€ ì¶œë ¥í•˜ê³  ë°˜í™˜í• ì§€ ê²°ì •í•´ì•¼ í•œë‹¤.
 	//
 	//
 	public boolean addStudent(Student student)
@@ -31,12 +31,12 @@ public class School
 			if(student.getName().equals(name))
 			{
 				students.remove(student);
-				System.out.println(name + " »èÁ¦ ¿Ï·á");
+				System.out.println(name + " ì‚­ì œ ì™„ë£Œ");
 				return true;
 			}
 		}
 		
-		System.out.println(name + " »èÁ¦ ½ÇÆĞ");
+		System.out.println(name + " ì‚­ì œ ì‹¤íŒ¨");
 		return false;
 	}
 	
@@ -121,20 +121,20 @@ public class School
 	{
 		switch(type)
 		{
-		case "ÇÁ¸°ÅÍ":
+		case "í”„ë¦°í„°":
 			printable = new PrintByPrinter();
-			System.out.println("Ãâ·Â ¹æ½ÄÀÌ " + type +"À¸·Î ¼³Á¤µÇ¾ú½À´Ï´Ù.");
+			System.out.println("ì¶œë ¥ ë°©ì‹ì´ " + type +"ìœ¼ë¡œ ì„¤ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			break;
-		case "ÆÄÀÏ":
+		case "íŒŒì¼":
 			printable = new PrintByFile();
-			System.out.println("Ãâ·Â ¹æ½ÄÀÌ " + type +"À¸·Î ¼³Á¤µÇ¾ú½À´Ï´Ù.");
+			System.out.println("ì¶œë ¥ ë°©ì‹ì´ " + type +"ìœ¼ë¡œ ì„¤ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			break;
-		case "ÄÜ¼Ö":
+		case "ì½˜ì†”":
 			printable = new PrintByConsole();
-			System.out.println("Ãâ·Â ¹æ½ÄÀÌ " + type +"À¸·Î ¼³Á¤µÇ¾ú½À´Ï´Ù.");
+			System.out.println("ì¶œë ¥ ë°©ì‹ì´ " + type +"ìœ¼ë¡œ ì„¤ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			break;
 		default:
-			System.out.println("Àß¸øµÈ ÀÔ·Â ¹æ½ÄÀÔ´Ï´Ù. ÀÔ·Â : ÇÁ¸°ÅÍ, ÆÄÀÏ, ÄÜ¼Ö");
+			System.out.println("ì˜ëª»ëœ ì…ë ¥ ë°©ì‹ì…ë‹ˆë‹¤. ì…ë ¥ : í”„ë¦°í„°, íŒŒì¼, ì½˜ì†”");
 		}
 	}
 	
@@ -149,42 +149,42 @@ public class School
 		school.addStudent(s2);
 		school.addStudent(s3);
 		school.addStudent(s4);
-		school.setPrintable("ÇÁ¸°ÅÍ");
+		school.setPrintable("í”„ë¦°í„°");
 		printable.printStudent(school.getStudents());
-		school.setPrintable("ÆÄÀÏ");
+		school.setPrintable("íŒŒì¼");
 		printable.printStudent(school.getStudents());
-		school.setPrintable("ÄÜ¼Ö");
+		school.setPrintable("ì½˜ì†”");
 		printable.printStudent(school.getStudents());
 	
 		school.removeStudent("soonsin");
-		school.setPrintable("ÇÁ¸°ÅÍ");
+		school.setPrintable("í”„ë¦°í„°");
 		printable.printStudent(school.getStudents());
-		school.setPrintable("ÆÄÀÏ");
+		school.setPrintable("íŒŒì¼");
 		printable.printStudent(school.getStudents());
-		school.setPrintable("ÄÜ¼Ö");
+		school.setPrintable("ì½˜ì†”");
 		printable.printStudent(school.getStudents());	
 		
-		school.setPrintable("ÇÁ¸°ÅÍ");
+		school.setPrintable("í”„ë¦°í„°");
 		printable.printStudent(school.searchName("gildong"));
-		school.setPrintable("ÆÄÀÏ");
+		school.setPrintable("íŒŒì¼");
 		printable.printStudent(school.searchName("gildong"));
-		school.setPrintable("ÄÜ¼Ö");
+		school.setPrintable("ì½˜ì†”");
 		printable.printStudent(school.searchName("gildong"));
 		
 		
-		school.setPrintable("ÇÁ¸°ÅÍ");
+		school.setPrintable("í”„ë¦°í„°");
 		printable.printStudent(school.searchMajor("soft"));
-		school.setPrintable("ÆÄÀÏ");
+		school.setPrintable("íŒŒì¼");
 		printable.printStudent(school.searchMajor("soft"));
-		school.setPrintable("ÄÜ¼Ö");
+		school.setPrintable("ì½˜ì†”");
 		printable.printStudent(school.searchMajor("soft"));
 		
 		
-		school.setPrintable("ÇÁ¸°ÅÍ");
+		school.setPrintable("í”„ë¦°í„°");
 		printable.printStudent(school.searchNumber("2"));
-		school.setPrintable("ÆÄÀÏ");
+		school.setPrintable("íŒŒì¼");
 		printable.printStudent(school.searchNumber("2"));
-		school.setPrintable("ÄÜ¼Ö");
+		school.setPrintable("ì½˜ì†”");
 		printable.printStudent(school.searchNumber("2"));
 	}
 }

@@ -120,6 +120,6 @@ public class Student implements Comparable<Student>,Serializable
 	// ������ ���ؼ� ���
 	public int compareTo(Student student)
 	{
-		return this.score - student.getScore();
+		return - this.score + student.getScore();
 	}
 }
