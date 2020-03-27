@@ -1,6 +1,8 @@
+import java.io.Serializable;
 
-public class Student implements Comparable<Student>
+public class Student implements Comparable<Student>, Serializable
 {
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String number;
 	private String major;
@@ -56,8 +58,8 @@ public class Student implements Comparable<Student>
 	
 	public String toString()
 	{
-		return "이름 : " + name + "/전공 : " + major + 
-				" /학번 : " + number + " 점수 " + score + "점";
+		return "이름 : " + name + "/"+"전공 : " + major + 
+				" /"+"학번 : " + number + " /"+"점수 " + score + "점";
 	}
 	
 	public boolean equals(Object o)
