@@ -1,0 +1,2 @@
+System.out.println("이름 : "+student.getName()+
+			            "/전공 : "+student.getMajor()+" /학번 : "+student.getNumber()+" /점수: "+student.getScore()+"점");
