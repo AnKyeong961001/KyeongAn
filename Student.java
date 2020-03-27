@@ -53,4 +53,10 @@ public class Student
 	{
 		return score;
 	}
+	
+	public String toString()
+	{
+		return "이름 : " + name + "/전공 : " + major + 
+				" /학번 : " + number + " 점수 " + score + "점";
+	}
 }
