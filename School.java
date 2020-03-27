@@ -5,7 +5,7 @@ import java.util.TreeSet;
 public class School
 {
 	private Set<Student> students;
-	private Printable printable;
+	private static Printable printable;
 	
 	public School()
 	{
@@ -140,8 +140,52 @@ public class School
 	
 	public static void main(String[] args)
 	{
-		School school = new School();
+		School school = new School();	
+		Student s1 = new Student("gildong", "1", "soft", 100);
+		Student s2 = new Student("simchung", "2", "com", 90);
+		Student s3 = new Student("ganggam", "3", "soft", 80);
+		Student s4 = new Student("soonsin", "4", "com", 70);
+		school.addStudent(s1);
+		school.addStudent(s2);
+		school.addStudent(s3);
+		school.addStudent(s4);
+		school.setPrintable("프린터");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("파일");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("콘솔");
+		printable.printStudent(school.getStudents());
+	
+		school.removeStudent("soonsin");
+		school.setPrintable("프린터");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("파일");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("콘솔");
+		printable.printStudent(school.getStudents());	
 		
+		school.searchName("gildong");
+		school.setPrintable("프린터");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("파일");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("콘솔");
+		printable.printStudent(school.getStudents());
 		
+		school.searchMajor("soft");
+		school.setPrintable("프린터");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("파일");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("콘솔");
+		printable.printStudent(school.getStudents());
+		
+		school.searchNumber("2");
+		school.setPrintable("프린터");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("파일");
+		printable.printStudent(school.getStudents());
+		school.setPrintable("콘솔");
+		printable.printStudent(school.getStudents());
 	}
 }
