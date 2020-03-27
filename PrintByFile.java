@@ -1,21 +1,20 @@
-import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.EOFException;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.StringTokenizer;
 
 public class PrintByFile implements Printable{
 
 	@Override
 	public void printStudent(Set<Student> printStudents) {
 		String path=null;
-		ObjectOutputStream oos=null;
+		BufferedWriter out = null;
 		try {
-			oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(new File("C:/javaTemp/data.txt"))));
+			out=new BufferedWriter(new FileWriter("C:/javaTemp/data.txt"));
 			
 			while(true)
 			{
@@ -23,9 +22,14 @@ public class PrintByFile implements Printable{
 					Iterator<Student> it =printStudents.iterator();
 					while(it.hasNext()) {
 					Student student = it.next();
-					oos.writeObject(student);
+					StringTokenizer st=new StringTokenizer(student.toString(), "/");
+					while(st.hasMoreTokens()) {
+						String s = st.nextToken();
+						out.write(s);
+						out.flush();
 					}
-					oos.flush();
+					}
+					
 				}catch(NullPointerException e) {System.err.println("존재하는 학생이 없습니다");}
 				catch(EOFException e) {break;}
 				catch(IOException e) {e.printStackTrace();}
@@ -37,7 +41,7 @@ public class PrintByFile implements Printable{
 		
 		
 		try {
-			oos.close();
+			out.close();
 		}catch(IOException e) {
 			e.printStackTrace();
 		}	
