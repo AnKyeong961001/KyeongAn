@@ -29,6 +29,7 @@ public class PrinterServer {
 				String str = sin.readLine();
 				System.out.println(str);
 				System.out.println(cSocket.getInetAddress().getHostName()+" 님이 나가셨습니다.");
+				break;
 			}
 			
 		}catch(Exception e) {

@@ -32,13 +32,12 @@ public class PrintByPrinter implements Printable{
 									socket.getOutputStream())));
 			Iterator<Student> it = printStudents.iterator();
 			
-			
-			
 			while(it.hasNext()) {
 				Student st = it.next();
-			
 				sout.println(st);
+				sout.flush();
 			}
+			sout.println("BYE");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
