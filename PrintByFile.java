@@ -26,7 +26,8 @@ public class PrintByFile implements Printable{
 					oos.writeObject(student);
 					}
 					oos.flush();
-				}catch(EOFException e) {break;}
+				}catch(NullPointerException e) {System.err.println("존재하는 학생이 없습니다");}
+				catch(EOFException e) {break;}
 				catch(IOException e) {e.printStackTrace();}
 			}
 			

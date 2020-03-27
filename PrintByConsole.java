@@ -1,4 +1,20 @@
+import java.util.Set;
+import java.util.Iterator;
 
-public class PrintByConsole {
+public class PrintByConsole implements Printable{
 
+	@Override
+	public void printStudent(Set<Student> printStudents) {
+		try {
+		System.out.println("* 콘솔 출력을 시작합니다 *");
+		Iterator<Student> it=printStudents.iterator();
+		while(it.hasNext())
+		{
+			Student student =it.next();
+			System.out.println(student);
+		}
+		System.out.println("* 콘솔 출력 완료 *");
+	}catch(NullPointerException e) {System.err.println("존재하는 학생이 없습니다");}
+
+}
 }
