@@ -1,0 +1,47 @@
+과이름은 소프트, 학번은 0001, 0002, 0003중 하나인 학생의 과이름, 학번, 명수를 출력하시오
+단, 이떄 과이름은 gd_name 학생이름은 studentNum이며 이 정보들은 student에 들어있다
+결과는 이렇게 나와야되며 HAVING절을 반드시 사용할것 
+
+소프트 0001  1
+소프트 0002  1
+소프트 0003  1
+
+답은 아래에 한참 내리면 있다
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SELECT gd_name, studentNum, COUNT(*)
+FROM student
+GROUP BY gd_name, studentNum,
+HAVING gd_name LIKE 'SOFT' AND studentNum IN('0001', '0002', '0003')

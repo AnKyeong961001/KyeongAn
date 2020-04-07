@@ -1,0 +1,65 @@
+계정관리))==================================================================
+
+CREATE USER jjj IDENTIFIED BY '1234'; -- jjj라는 이름의 계정을 생성 후 비밀번호를 1234로 설정한다.
+SET PASSWORD FOR jjj = PASSWORD('1111');-- jjj 라는 계정에 대한 비밀번호를 1111로 재 설정 한다.
+RENAME USER jjj TO jj; // 유저명을 jjj 에서 jj로 변경한다.
+SHOW CREATE USER jj;// jj가 어떻게 만들어진것인지 보기
+
+DB관리))==================================================================
+
+SHOW DATABASES; // 해당 계정에게 권한이 있는 DB보기
+CREATE DATABASE IF NOT EXISTS jjpro; -- jjpro 라는 DB가 존재하지 않다면 생성
+DROP DATABASE jjpro -- jjpro 라는 DB 삭제
+CREATE DATABASE jjpro; -- jjpro 라는 재 DB생성
+mysql -ujj -p1111 jjpro// jj라는 유저(비밀번호 1111)로 jjpro DB에 접속한다.
+SET PASSWORD('1234); // 현재 계정의 비밀번호를 1234로 변경
+
+권한관리))==================================================================
+
+GRANT ALL PRIVILEGES -- 모든 종류의 권한을 다 준다
+ON *.* -- 모든 DB에 대해서
+TO jj -- jj에게 
+WITH GRANT OPTION; -- 권한을 줄 수 있는 권한까지 같이.
+
+REVOKE ALL PRIVILEGES -- 모든 종류의 권한을 다 뺏는다
+ON *.* -- 모든 DB에 대해서
+FROM jj -- jj 로 부터
+WITH GRANT OPTION; -- 권한을 줄 수 있는 권한까지 같이.
+
+GRANT SELECT,DELETE,SHOW -- SELECT,DELETE,SHOW 만 할 수 있는 권한을 준다.
+ON jjpro.* -- jjpro라는 데이터베이스의 하위 테이블에 대해서
+TO jj; -- project 라는 계정에게
+
+SHOW GRANTS // 현재 접속한 계정의 권한 보기
+SHOW GRANTS FOR jj // jj의 권한 보기
+
+테이블 관리))==================================================================
+
+CREATE TABLE book(
+b_index TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+b_title VARCHAR(20) NOT NULL, // 문자열 타입의(20자 제한) b_title 변수 선언 공백 불가
+b_price INT UNSIGNED NOT NULL, // unsigned 타입의 변수 선언 공백 불가
+b_date DATETIME NOT NULL DEFAULT NOW() // DATETIME(시간을저장하는)타입의 b_date 변수는 비울 수 없고 default 입력시 현재날짜(now())로 입력된다.(default는 다음에오는 토큼 1개에만 해당)
+)ENGINE=INNODB DEFAULT CHARSET=UTF8
+
+ALTER TABLE book ADD b_type VARCHAR(20) NOT NULL; // book 이라는 테이블에 VARCHAR(20) 타입의 b_type이라는 변수를 선언한다 공백 불가.
+ALTER TABLE book MODIFY b_type VARCHAR(20) NULL; // book 테이블의 b_type을 이름은 유지하고 내부 속성을 변경하기
+ALTER TABLE book CHANGE b_type b_kind VARCHAR(30)
+INSERT INTO book VALUES(default,'토끼의 간','3000',default,'호러');
+INSERT INTO book(b_type, b_date, b_title, b_price, b_index) VALUES('판타지','2020-03-20 00:00:00','금도끼 은도끼',3000, default);
+SHOW CREATE TABLE book; // book이 만들어진 속성 보기
+
+ALTER TABLE book ADD PRIMARY KEY('변수명'); // 변수에 PRIMARY KEY를 추가한다.
+ALTER TABLE book DROP PRIMARY KEY; // PRIMARY KEY 를 지운다
+ALTER TABLE
+
+
+무언가를 검색))==================================================================
+
+SELECT * FROM book; // book의 모든 컬럼을 검색한다.
+SELECT b_index,b_date FROM book; // book 에서 b_index,b_date 컬럼만 검색한다.
+SHOW TABLES LIKE 'us' // us 보기
+SHOW TABLES LIKE 'us%' // us로 시작하는것 보기
+SHOW TABLES NOT LIKE 'us%' // us로 시작하는것 제외하고 보기
+SHOW COLUMNS FROM jjpro.book; // hhpro에 있는 book table의 columns 보기
+

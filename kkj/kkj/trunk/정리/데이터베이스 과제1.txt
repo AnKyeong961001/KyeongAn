@@ -1,0 +1,25 @@
+﻿1.mariadb 설치 및 path 설정 (bin 디렉토리 등록)
+
+2.my.ini파일 설정한후  db 재구동해야 등록한내용 적용됨
+[mysqld]섹션에 아래 내용을 등록
+collation-server=utf8_unicode_ci
+skip-character-set-client-handshake
+
+3.root를 대신할 *관리자* 계정을 본인 이름과 동일한 이름으로 추가
+  (=root 될수있으면 쓰지 말란거)
+
+4.새로 추가된 본인 이름의 관리자 계정으로 로그인
+
+5.student 데이터베이스 내의 모든 테이블에 모든 권한을 가지는 (GRANT제외) student계정 추가
+
+6.student 계정이 사용할 student 데이터베이스를 생성
+
+7. student계정으로 student 데이터베이스에 접속  
+
+8.접속이 완료되면 student 데이터베이스를 삭제및 재생성
+
+9.student 계정에 부여된 권한을 수거
+
+~58p까지하기
+내일부터는 스키마, 테이블 만들고 데이터 조작할것임
+

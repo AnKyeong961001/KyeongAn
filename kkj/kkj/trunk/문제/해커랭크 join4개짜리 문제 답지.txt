@@ -1,0 +1,13 @@
+SELECT DISTINCT A.hacker_id, name
+FROM (SELECT * FROM(Hackers RIGHT JOIN Submissions USING(hacker_id))) AS A 
+     LEFT JOIN
+    (SELECT * FROM (Challenges LEFT JOIN Difficulty USING (difficulty_level)))AS B
+    USING(challenge_id)
+    WHERE(A.challenge_id=B.challenge_id
+          and
+     A.score=B.score )
+group by name, A.hacker_id
+having COUNT(A.challenge_id=B.challenge_id
+          and
+     A.score=B.score)>=2
+order by COUNT(A.hacker_id) desc, A.hacker_id asc

@@ -1,0 +1,26 @@
+<데이터베이스 명령어 정리>
+
+[로그인]============================================
+루트로 시작하기(권장하지 않음) : C:\Users\tlfzg>mysql -uroot -p
+관리자계정으로 시작하기 (권장) : C:\Users\tlfzg>mysql -utlfzgjadyd -p
+student계정으로 시작하기 : C:\Users\tlfzg>mysql -ustudent -p
+==================================================
+[mysql]로 자리이동 : use mysql;
+종료 : ctrl + c;
+계정들 이름 보기 : select host, user from user;
+==================================================
+
+[계정추가]============================================
+계정 생성 : CREATE USER 유저명 IDENTIFIED BY ' 비번 ';
+계정들 확인 : SELECT * FROM user;
+계정 삭제 : DROP USER 유저명@'localhost';
+권한부여 :  GRANT ALL PRIVILEGES ON *.* TO 유저명@'localhost';
+권한삭제 : REVOKE ALL PRIVILEGES ON *.* FROM 유저명@'localhost';
+==================================================
+
+[데이터베이스 생성]======================================
+데이터베이스 생성 : CREATE DATABASE 이름;
+데이터베이스 보기 : SHOW DATABASES;
+데이터베이스 삭제 :  DROP DATABASE 이름;
+테이블 보기 : SHOW TABLES;
+==================================================
